@@ -1,0 +1,74 @@
+[tool.black]
+line-length = 120
+color = true
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+(
+      \.egg
+    | \.eggs
+    | \.git
+    | \.hg
+    | \.dvc
+    | \.mypy_cache
+    | \.pytest_cache
+    | \.nox
+    | \.tox
+    | \.venv
+    | \.venv-docs
+    | \.venv-dev
+    | \.venv-note
+    | \.venv-dempy
+    | _build
+    | build
+    | dist
+    | setup.py
+)
+'''
+
+# `isort` configurations
+[tool.isort]
+# https://github.com/timothycrosley/isort
+py_version = 38
+profile = "black"
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 120
+skip_gitignore = true
+color_output = true
+#known_typing = ["typing", "types", "typing_extensions", "mypy", "mypy_extensions"]
+
+[tool.mypy]
+# https://mypy.readthedocs.io/en/latest/config_file.html
+python_version = 3.8
+pretty = true
+show_traceback = true
+color_output = true
+warn_return_any = true
+warn_no_return = true
+warn_unused_configs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unreachable = true
+
+[tool.nbqa.config]
+black = "pyproject.toml"
+isort = "pyproject.toml"
+
+[tool.nbqa.mutate]
+isort = 1
+black = 1
+pyupgrade = 1
+
+[tool.nbqa.addopts]
+pyupgrade = ["--py36-plus"]
+
+[tool.nbqa.files]
+isort = "^notebooks/"
+black = "^notebooks/"
+flake8 = "^notebooks/"
+mypy = "^notebooks/"
+pydocstyle = "^notebooks/"
+pyupgrade = "^notebooks/"
